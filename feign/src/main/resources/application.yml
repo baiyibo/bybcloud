@@ -1,0 +1,15 @@
+
+eureka:
+  client:
+    registry-fetch-interval-seconds: 30  # \u6BCF\u591A\u5C11\u79D2\u91CD\u65B0\u4ECE\u6CE8\u518C\u4E2D\u5FC3\u83B7\u53D6\u670D\u52A1\u5217\u8868\u6570\u636E \u9ED8\u8BA430
+    serviceUrl:
+      defaultZone: http://localhost:8801/eureka/
+server:
+  port: 8804
+spring:
+  application:
+    name: feign-consumer
+# ribbon\u8D1F\u8F7D\u5747\u8861\u7B56\u7565\u914D\u7F6E
+ribbon-provider:
+  ribbon:
+    NFLoadBalancerRuleClassName: com.netflix.loadbalancer.RoundRobinRule
