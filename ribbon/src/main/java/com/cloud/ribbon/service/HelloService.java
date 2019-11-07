@@ -22,7 +22,7 @@ public class HelloService {
 
 
     public String sayHello() throws InterruptedException {
-//        Thread.sleep(new Random().nextInt(2000));
+        Thread.sleep(7000);
         return ip.getPort()+" : helloWorld"; // 提供一个hello World
     }
 }

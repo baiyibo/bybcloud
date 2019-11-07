@@ -18,7 +18,23 @@ eureka:
 
 
 zuul:
+  retryable: true #是否重试机制
   prefix: /api # 添加路由前缀
   routes:  # \可以不配置映射  默认  访问 服务名/**  及映射到对应服务的路径
     ribbon-provider:  /ribbon-provider/**
+
+ribbon:
+  ConnectTimeout: 250 # 连接超时时间(ms)
+  ReadTimeout: 2000 # 通信超时时间(ms)
+  OkToRetryOnAllOperations: true # 是否对所有操作重试
+  MaxAutoRetriesNextServer: 2 # 同一服务不同实例的重试次数
+  MaxAutoRetries: 1 # 同一实例的重试次数
+
+hystrix:
+  command:
+    default:
+      execution:
+        isolation:
+          thread:
+            timeoutInMillisecond: 6000 # 熔断超时时长：6000ms
 
