@@ -11,6 +11,7 @@
         <module name="feign" />
         <module name="ribbon" />
         <module name="ribbon-consumer" />
+        <module name="zuul" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
@@ -19,6 +20,7 @@
       <module name="feign" target="1.8" />
       <module name="ribbon" target="1.8" />
       <module name="ribbon-consumer" target="1.8" />
+      <module name="zuul" target="1.8" />
     </bytecodeTargetLevel>
   </component>
 </project>

@@ -18,7 +18,7 @@ public class HelloController {
     private HelloService helloService;
 
     @GetMapping("/hello")
-    public String sayHello(String name){
+    public String sayHello(String name) throws InterruptedException {
         return helloService.sayHello() + " " + name;
     }
 }

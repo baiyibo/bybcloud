@@ -4,8 +4,8 @@ eureka:
     serviceUrl:
       defaultZone: http://localhost:8800/eureka/,http://localhost:8801/eureka/
   instance:
-      lease-expiration-duration-in-seconds: 90 #\u670D\u52A1\u5931\u6548\u65F6\u95F4\uFF0C\u9ED8\u8BA4\u503C90\u79D2
-      lease-renewal-interval-in-seconds: 30 #\u670D\u52A1\u7EED\u7EA6(renew)\u7684\u95F4\u9694\uFF0C\u9ED8\u8BA4\u4E3A30\u79D2
+      lease-expiration-duration-in-seconds: 10 #服务失效时间，默认值90秒    如果超过90秒没有发送心跳，EurekaServer就会认为该服务宕机，会从服务列表中移除
+      lease-renewal-interval-in-seconds: 5 #默认情况下每个30秒服务会向注册中心发送一次心跳，证明自己还活着
 
 server:
   port: 8803

@@ -1,10 +1,18 @@
 
 eureka:
   client:
+    register-with-eureka: false #客户端不注册到eureka，只是进行服务的调用
+    registry-fetch-interval-seconds: 30  #  每30秒会从注册中心重新获取服务列表数据
     serviceUrl:
-      defaultZone: http://localhost:8801/eureka/
+      defaultZone: http://localhost:8800/eureka/,http://localhost:8801/eureka/
+
+ribbon-provider:
+  ribbon:
+    NFLoadBalancerRuleClassName: com.netflix.loadbalancer.RoundRobinRule
+
+
 server:
-  port: 8803
+  port: 8805
 spring:
   application:
     name: ribbon-consumer

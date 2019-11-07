@@ -1,6 +1,11 @@
 package com.cloud.ribbon.service;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.net.InetAddress;
+import java.net.UnknownHostException;
+import java.util.Random;
 
 /**
  * @ClassName HelloService
@@ -11,7 +16,13 @@ import org.springframework.stereotype.Service;
  **/
 @Service
 public class HelloService {
-    public String sayHello(){
-        return "helloWorld"; // 提供一个hello World
+    @Autowired
+    IpConfiguration ip;
+
+
+
+    public String sayHello() throws InterruptedException {
+//        Thread.sleep(new Random().nextInt(2000));
+        return ip.getPort()+" : helloWorld"; // 提供一个hello World
     }
 }

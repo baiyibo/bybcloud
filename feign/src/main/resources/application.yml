@@ -1,15 +1,46 @@
 
 eureka:
   client:
-    registry-fetch-interval-seconds: 30  # \u6BCF\u591A\u5C11\u79D2\u91CD\u65B0\u4ECE\u6CE8\u518C\u4E2D\u5FC3\u83B7\u53D6\u670D\u52A1\u5217\u8868\u6570\u636E \u9ED8\u8BA430
+    register-with-eureka: false #客户端不注册到eureka，只是进行服务的调用
+    registry-fetch-interval-seconds: 30  #  每30秒会从注册中心重新获取服务列表数据
     serviceUrl:
-      defaultZone: http://localhost:8801/eureka/
+      defaultZone: http://localhost:8800/eureka/,http://localhost:8801/eureka/
+
 server:
   port: 8804
 spring:
   application:
     name: feign-consumer
-# ribbon\u8D1F\u8F7D\u5747\u8861\u7B56\u7565\u914D\u7F6E
+
+
+# ribbon负载均衡配置 com.netflix.loadbalancer.RoundRobinRule ：循环选择每个应用（默认配置）      com.netflix.loadbalancer.RandomRule  ：随机选择一个应用
+#com.netflix.loadbalancer.AvailabilityFilteringRule ：此规则将跳过被视为“电路跳闸”或具有高并发连接数的服务器。默认情况下，如果RestClient最近三次无法与其建立连接，则实例会跳闸。一旦实例电路跳闸，它将在电路被认为再次关闭之前保持这种状态30秒。然而，如果它继续连接失败，它将再次“电路跳闸”并且它变为“电路闭合”的等待时间将指数增加到连续故障的数量。
+#com.netflix.loadbalancer.WeightedResponseTimeRule ：对于此规则，每个服务器根据其平均响应时间给予权重。响应时间越长，重量就越小。该规则随机选择服务器，其中可能性由服务器的权重决定。
 ribbon-provider:
   ribbon:
     NFLoadBalancerRuleClassName: com.netflix.loadbalancer.RoundRobinRule
+
+
+#ribbon:
+#  # 同一实例最大重试次数，不包括首次调用。默认值为0
+#  MaxAutoRetries: 0
+#  # 同一个微服务其他实例的最大重试次数，不包括第一次调用的实例。默认值为1
+#  MaxAutoRetriesNextServer: 0
+#  # 是否所有操作（GET、POST等）都允许重试。默认值为false
+#  OkToRetryOnAllOperations: false
+
+
+feign:
+  hystrix:
+    enabled: true # 开启Feign的熔断功能
+  compression:
+      request:
+        enabled: true # 开启请求压缩
+        mime-types: text/html,application/xml,application/json # 设置压缩的数据类型
+        min-request-size: 2048 # 设置触发压缩的大小下限
+      response:
+        enabled: true # 开启响应压缩
+
+logging:
+  level:
+    com.cloud.feign.rpc.GetHello: debug
