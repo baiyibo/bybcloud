@@ -20,8 +20,8 @@ eureka:
 zuul:
   retryable: true #是否重试机制
   prefix: /api # 添加路由前缀
-  routes:  # \可以不配置映射  默认  访问 服务名/**  及映射到对应服务的路径
-    ribbon-provider:  /ribbon-provider/**
+#  routes:  # \可以不配置映射  默认  访问 服务名/**  及映射到对应服务的路径
+#    ribbon-provider:  /ribbon-provider/**
 
 ribbon:
   ConnectTimeout: 250 # 连接超时时间(ms)

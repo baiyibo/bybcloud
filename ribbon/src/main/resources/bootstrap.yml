@@ -1,0 +1,44 @@
+
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8800/eureka/,http://localhost:8801/eureka/
+  instance:
+      lease-expiration-duration-in-seconds: 10 #服务失效时间，默认值90秒    如果超过90秒没有发送心跳，EurekaServer就会认为该服务宕机，会从服务列表中移除
+      lease-renewal-interval-in-seconds: 5 #默认情况下每个30秒服务会向注册中心发送一次心跳，证明自己还活着
+
+
+
+spring:
+  profiles:
+    active: dev
+
+---
+spring:
+  profiles: prod
+  application:
+    name: ribbon-provider
+  cloud:
+     config:
+       label: master
+       profile: prod
+       discovery:
+         enabled: true
+         service-id: config-server
+
+
+---
+spring:
+  profiles: dev
+  application:
+    name: ribbon-provider
+  cloud:
+     config:
+       label: master  #指定仓库分支
+       profile: dev   #指定版本 本例中建立了dev 和 prod两个版本
+       discovery:
+          enabled: true  # 开启
+          service-id: config-server # 指定配置中心服务端的server-id
+
+#  http://localhost:8801/actuator/refresh   刷新配置接口
