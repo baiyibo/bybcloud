@@ -1,0 +1,41 @@
+
+
+eureka:
+  client:
+#    register-with-eureka: false #客户端不注册到eureka，只是进行服务的调用
+    registry-fetch-interval-seconds: 30  #  每30秒会从注册中心重新获取服务列表数据
+    serviceUrl:
+      defaultZone: http://localhost:8800/eureka/,http://localhost:8801/eureka/
+
+spring:
+  profiles:
+    active: dev
+
+---
+spring:
+  profiles: prod
+  application:
+    name: feign-consumer
+  cloud:
+     config:
+       label: master
+       profile: prod
+       discovery:
+         enabled: true
+         service-id: config-server
+
+
+---
+spring:
+  profiles: dev
+  application:
+    name: feign-consumer
+  cloud:
+     config:
+       label: master  #指定仓库分支
+       profile: dev   #指定版本 本例中建立了dev 和 prod两个版本
+       discovery:
+          enabled: true  # 开启
+          service-id: config-server # 指定配置中心服务端的server-id
+
+#  http://localhost:8801/actuator/refresh   刷新配置接口

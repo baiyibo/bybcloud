@@ -1,0 +1,10 @@
+server:
+  port: 7778
+
+
+# rabbitmq
+spring:
+    rabbitmq:
+      addresses: 129.204.183.175:5672
+      username: admin
+      password: admin

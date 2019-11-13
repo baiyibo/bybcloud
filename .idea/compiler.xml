@@ -10,6 +10,8 @@
         <module name="config" />
         <module name="eureka" />
         <module name="feign" />
+        <module name="rabbit-producer" />
+        <module name="rabbitmq-consumer" />
         <module name="ribbon" />
         <module name="ribbon-consumer" />
         <module name="zuul" />
@@ -20,6 +22,9 @@
       <module name="config" target="1.8" />
       <module name="eureka" target="1.8" />
       <module name="feign" target="1.8" />
+      <module name="rabbit-producer" target="1.8" />
+      <module name="rabbitmq-consumer" target="1.8" />
+      <module name="rabbitmq-producer" target="1.8" />
       <module name="ribbon" target="1.8" />
       <module name="ribbon-consumer" target="1.8" />
       <module name="zuul" target="1.8" />
