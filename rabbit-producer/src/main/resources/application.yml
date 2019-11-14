@@ -2,25 +2,25 @@ server:
   port: 7777
 
 
-# rabbitmq\u914D\u7F6E
+# rabbitmq配置
 spring:
     rabbitmq:
       addresses: 129.204.183.175:5672
       username: admin
       password: admin
-      # \u5BF9 rabbitmqTemplate \u8FDB\u884C\u76D1\u542C,\u5F53\u6D88\u606F\u7531\u4E8Eserver\u7684\u539F\u56E0\u65E0\u6CD5\u5230\u8FBEqueue\u65F6\uFF0C\u5C31\u4F1A\u88AB\u76D1\u542C\u5230\uFF0C\u4EE5\u4FBF\u6267\u884CReturnCallback\u65B9\u6CD5
+      # 对 rabbitmqTemplate 进行监听,当消息由于server的原因无法到达queue时，就会被监听到，以便执行ReturnCallback方法
       publisher-confirms: true
       publisher-returns: true
-      # mandatory\uFF1A\u4EA4\u6362\u5668\u65E0\u6CD5\u6839\u636E\u81EA\u8EAB\u7C7B\u578B\u548C\u8DEF\u7531\u952E\u627E\u5230\u4E00\u4E2A\u7B26\u5408\u6761\u4EF6\u7684\u961F\u5217\u65F6\u7684\u5904\u7406\u65B9\u5F0F
-        #true\uFF1ARabbitMQ\u4F1A\u8C03\u7528Basic.Return\u547D\u4EE4\u5C06\u6D88\u606F\u8FD4\u56DE\u7ED9\u751F\u4EA7\u8005
-        #false\uFF1ARabbitMQ\u4F1A\u628A\u6D88\u606F\u76F4\u63A5\u4E22\u5F03
+      # mandatory：交换器无法根据自身类型和路由键找到一个符合条件的队列时的处理方式
+        #true：RabbitMQ会调用Basic.Return命令将消息返回给生产者
+        #false：RabbitMQ会把消息直接丢弃
       template:
             mandatory: true
       listener:
               simple:
-                    # \u6D88\u8D39\u7AEF\u624B\u52A8\u786E\u8BA4
+                    # 消费端手动确认
                 acknowledge-mode: manual
-                    # \u5E76\u53D1\u6D88\u8D39
+                    # 并发消费
                 concurrency:  5
                 max-concurrency: 10
 
