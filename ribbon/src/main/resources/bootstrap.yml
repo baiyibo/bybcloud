@@ -26,7 +26,15 @@ spring:
        discovery:
          enabled: true
          service-id: config-server
-
+       fail-fast: true
+     bus:
+       trace:
+         enabled: true
+  rabbitmq:
+     host: 129.204.183.175
+     port: 5672
+     username: admin
+     password: admin
 
 ---
 spring:
@@ -40,5 +48,13 @@ spring:
        discovery:
           enabled: true  # 开启
           service-id: config-server # 指定配置中心服务端的server-id
-
+       fail-fast: true
+     bus:
+       trace:
+         enabled: true
+  rabbitmq:
+     host: 129.204.183.175
+     port: 5672
+     username: admin
+     password: admin
 #  http://localhost:8801/actuator/refresh   刷新配置接口

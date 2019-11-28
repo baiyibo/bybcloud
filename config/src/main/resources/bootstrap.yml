@@ -9,4 +9,20 @@ spring:
             username: baiyibo
             password: byb5811022
             default-label: master #配置文件分支
-            search-paths: config  #配置文件所在根目录
+            search-paths: config #配置文件所在根目录
+     bus:
+        enabled: true
+        trace:
+          enabled: true
+  rabbitmq:
+    host: 129.204.183.175
+    port: 5672
+    username: admin
+    password: admin
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+

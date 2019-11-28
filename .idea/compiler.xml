@@ -6,7 +6,6 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="bybcloud" />
         <module name="config" />
         <module name="eureka" />
         <module name="feign" />
@@ -15,6 +14,12 @@
         <module name="ribbon" />
         <module name="ribbon-consumer" />
         <module name="zuul" />
+      </profile>
+      <profile name="Annotation profile for bybcloud" enabled="true">
+        <sourceOutputDir name="../target/generated-sources/annotations" />
+        <sourceTestOutputDir name="../target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="bybcloud" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
